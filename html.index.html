@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ostra | Curadoria Estratégica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0f0e0c;
+  --paper: #f7f4ee;
+  --cream: #ede9df;
+  --gold: #9a7c3f;
+  --gold-light: #c4a46b;
+  --muted: #7a7166;
+  --border: #ddd8cc;
+  --white: #ffffff;
+  --teal: #2d5954;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── ANIMAÇÕES ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lineGrow {
+  from { width: 0; }
+  to   { width: 48px; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── CONTAINER ─── */
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ─── NAV ─── */
+nav {
+  padding: 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  animation: fadeUp .6s ease both;
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+.nav-logo em { font-style: italic; color: var(--gold); }
+
+.nav-contact {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s;
+}
+.nav-contact:hover { border-bottom-color: var(--gold); }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 100px 0 80px;
+  animation: fadeUp .8s ease both .1s;
+}
+
+.hero-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(56px, 8vw, 96px);
+  font-weight: 300;
+  letter-spacing: -3px;
+  line-height: .95;
+  color: var(--ink);
+  margin-bottom: 40px;
+}
+.hero-title em { font-style: italic; color: var(--gold); }
+
+.hero-rule {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 36px;
+  animation: lineGrow .9s ease both .4s;
+}
+
+.hero-statement {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2.8vw, 26px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 640px;
+}
+.hero-statement em { color: var(--gold); font-style: italic; }
+
+/* ─── SEÇÕES GERAIS ─── */
+section {
+  padding: 80px 0;
+  border-top: 1px solid var(--border);
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 40px;
+}
+
+/* ─── PROBLEMA ─── */
+.problema-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 2.4vw, 22px);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--ink);
+  max-width: 680px;
+}
+.problema-body strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ─── NÃO É / É ─── */
+.nao-e-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .nao-e-grid { grid-template-columns: 1fr; }
+}
+
+.nao-e-col {
+  padding: 40px 36px;
+  border: 1px solid var(--border);
+}
+.nao-e-col.col-nao { background: var(--white); }
+.nao-e-col.col-e   { background: var(--ink); }
+.nao-e-col.col-e .col-title { color: var(--gold-light); }
+.nao-e-col.col-e .col-item  { color: rgba(247,244,238,.85); border-bottom-color: rgba(255,255,255,.1); }
+.nao-e-col.col-e .col-item:last-child { border-bottom: none; }
+
+.col-title {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.col-item {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--muted);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.col-item:last-child { border-bottom: none; }
+.col-item em { font-style: italic; }
+
+.col-e .col-item-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2.6vw, 24px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--paper);
+  margin-top: 8px;
+}
+.col-e .col-item-main em { color: var(--gold-light); font-style: normal; font-weight: 600; }
+
+/* ─── COMO FUNCIONA ─── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .steps { grid-template-columns: 1fr; }
+}
+
+.step {
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+  border-right: none;
+  position: relative;
+  transition: background .25s ease;
+}
+.step:last-child { border-right: 1px solid var(--border); }
+.step:hover { background: var(--white); }
+
+.step-number {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.step-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.step-body {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* ─── PARA QUEM ─── */
+.perfis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .perfis { grid-template-columns: 1fr; }
+}
+
+.perfil-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  padding: 28px 24px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.perfil-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(15,14,12,.08);
+}
+
+.perfil-icon {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.perfil-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.perfil-desc {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* ─── EVIDÊNCIA (BLOCO ESCURO) ─── */
+.evidencia-block {
+  background: var(--ink);
+  padding: 72px 64px;
+  margin: 0 -40px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .evidencia-block { padding: 48px 32px; margin: 0 -20px; }
+}
+
+.evidencia-deco {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 200px;
+  color: rgba(154,124,63,.06);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.evidencia-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 32px;
+}
+
+.evidencia-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2.6vw, 24px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.75;
+  color: rgba(247,244,238,.9);
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+.evidencia-quote em { color: var(--gold-light); font-style: normal; font-weight: 600; }
+.evidencia-quote::before {
+  content: '"';
+  font-size: 80px;
+  color: rgba(154,124,63,.2);
+  line-height: 0;
+  position: absolute;
+  top: 24px;
+  left: -20px;
+  font-style: normal;
+}
+
+.evidencia-meta {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(247,244,238,.12);
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(247,244,238,.45);
+  letter-spacing: .3px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── CONTATO ─── */
+.contato-section {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
+
+.contato-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 20px;
+  max-width: 520px;
+}
+.contato-titulo em { font-style: italic; color: var(--gold); }
+
+.contato-desc {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 480px;
+  margin-bottom: 44px;
+}
+
+.contato-email {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 400;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-light);
+  padding-bottom: 4px;
+  transition: color .2s ease, border-color .2s ease;
+  letter-spacing: -0.5px;
+}
+.contato-email:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.contato-nota {
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: .3px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.footer-tagline {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: .3px;
+}
+
+@media (max-width: 600px) {
+  .container { padding: 0 20px; }
+  nav { padding: 20px 0; }
+  .hero { padding: 64px 0 56px; }
+  footer { flex-direction: column; gap: 16px; text-align: center; }
+  .nao-e-col { padding: 28px 24px; }
+  .step { border-right: 1px solid var(--border); border-bottom: none; }
+  .step:last-child { border-bottom: 1px solid var(--border); }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">O<em>stra</em></a>
+    <a href="mailto:suaostra@proton.me" class="nav-contact">Falar com a Ostra</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">Ostra | Curadoria Estratégica</p>
+    <h1 class="hero-title">O<em>stra</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-statement">
+      Profissionais que decidem bem não precisam de mais informação.<br>
+      Precisam da <em>informação certa</em>, no momento certo,<br>
+      filtrada para o contexto específico deles.
+    </p>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<div class="container">
+  <section class="reveal">
+    <p class="section-label">O problema</p>
+    <p class="problema-body">
+      Quanto mais relevante a área de atuação, mais informação circula sobre ela.
+      Publicações, atualizações, regulamentações, pesquisas, tendências — o volume cresce
+      sem que o tempo disponível para absorvê-lo acompanhe. O resultado não é ignorância.
+      É uma forma mais silenciosa de perda: <strong>decisões tomadas com o que estava disponível,
+      não com o que era necessário saber.</strong>
+    </p>
+  </section>
+</div>
+
+<!-- NÃO É / É -->
+<div class="container">
+  <section class="reveal" style="padding-bottom: 0; border-top: none;">
+    <p class="section-label">O que é a Ostra</p>
+  </section>
+</div>
+<div class="container" style="padding-bottom: 80px;">
+  <div class="nao-e-grid reveal">
+
+    <div class="nao-e-col col-nao">
+      <p class="col-title">A Ostra não é</p>
+      <div class="col-item">Uma newsletter</div>
+      <div class="col-item">Um serviço de clipping</div>
+      <div class="col-item">Um agregador de conteúdo</div>
+      <div class="col-item">Uma consultoria</div>
+      <div class="col-item">Um infoproduto</div>
+    </div>
+
+    <div class="nao-e-col col-e">
+      <p class="col-title">A Ostra é</p>
+      <p class="col-item-main">
+        Uma <em>relação de inteligência</em>. Monitoro as fontes que importam para
+        o seu contexto específico, filtro o que pode ser ignorado e entrego
+        apenas o que tem valor real para as suas decisões.
+        Quanto mais tempo de acompanhamento, mais precisa — e mais incopiável — essa relação se torna.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- COMO FUNCIONA -->
+<div class="container">
+  <section class="reveal">
+    <p class="section-label">Como funciona</p>
+    <div class="steps">
+
+      <div class="step">
+        <p class="step-number">01</p>
+        <h3 class="step-title">Mapeamento do contexto</h3>
+        <p class="step-body">Antes de qualquer entrega, entendo o que você faz, as fontes que realmente importam para a sua área e o que, se você não soubesse, custaria caro.</p>
+      </div>
+
+      <div class="step">
+        <p class="step-number">02</p>
+        <h3 class="step-title">Monitoramento e filtragem</h3>
+        <p class="step-body">Acompanho regularmente as fontes mapeadas — legislação, mercado, pesquisa, setor — e filtro com o critério do seu contexto, não com o critério do algoritmo.</p>
+      </div>
+
+      <div class="step">
+        <p class="step-number">03</p>
+        <h3 class="step-title">Entrega da pérola</h3>
+        <p class="step-body">O que chega para você é apenas o que passou pelo filtro — com a explicação de por que importa para o seu trabalho, não apenas o que aconteceu.</p>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- PARA QUEM -->
+<div class="container">
+  <section class="reveal">
+    <p class="section-label">Para quem</p>
+    <div class="perfis">
+
+      <div class="perfil-card">
+        <div class="perfil-icon">⚖️</div>
+        <h3 class="perfil-titulo">Profissionais de setores regulados</h3>
+        <p class="perfil-desc">Quem atua em áreas onde uma resolução publicada hoje pode mudar o trabalho de amanhã — e não pode se dar ao luxo de descobrir com atraso.</p>
+      </div>
+
+      <div class="perfil-card">
+        <div class="perfil-icon">🔬</div>
+        <h3 class="perfil-titulo">Pesquisadores e acadêmicos</h3>
+        <p class="perfil-desc">Quem conduz pesquisa em campo específico e precisa de monitoramento contínuo de fontes primárias sem perder tempo em ruído editorial.</p>
+      </div>
+
+      <div class="perfil-card">
+        <div class="perfil-icon">📡</div>
+        <h3 class="perfil-titulo">Profissionais de comunicação e conteúdo</h3>
+        <p class="perfil-desc">Quem produz conteúdo com consistência e precisa estar informado sobre o que é relevante para a sua audiência — antes da audiência.</p>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- EVIDÊNCIA -->
+<div class="container" style="padding-bottom: 80px;">
+  <div class="evidencia-block reveal">
+    <div class="evidencia-deco">◈</div>
+    <p class="evidencia-eyebrow">Na prática</p>
+    <p class="evidencia-quote">
+      Deixa eu te contar o que poderia acontecer caso passasse despercebido: <em>o estudo caríssimo para emissão de uma licença ambiental ia ficar incompleto.</em> Com isso, o órgão iria pedir complementações e o processo ia atrasar. E tempo é dinheiro.
+      <br><br>
+      Já tem esses serviços de vir as notícias do dia e um sistema que rastreia a legislação atual. <em>Essa da qualidade do ar não apareceu lá.</em>
+    </p>
+    <p class="evidencia-meta">— Engenheira ambiental, cliente da Ostra</p>
+  </div>
+</div>
+
+<!-- CONTATO -->
+<div class="container">
+  <div class="contato-section reveal">
+    <h2 class="contato-titulo">Se fez sentido até aqui,<br>o próximo passo é <em>simples</em>.</h2>
+    <p class="contato-desc">Mande uma mensagem. Conversamos sobre o seu contexto de trabalho, as fontes que importam para você e como a Ostra pode funcionar na prática.</p>
+    <a href="mailto:suaostra@proton.me" class="contato-email">suaostra@proton.me</a>
+    <p class="contato-nota">Atendimento personalizado · Vagas limitadas</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="container">
+  <footer>
+    <span class="footer-brand">A Ostra</span>
+    <span class="footer-tagline">Filtramos o ruído. Você fica com a pérola.</span>
+  </footer>
+</div>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
